@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML/CSS/JS Sandbox</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 20px;
+  }
+  #inputPane, #outputPane {
+    width: 48%;
+    margin: 1%;
+    height: 400px;
+  }
+  #inputPane {
+    border: 2px solid #000;
+  }
+  #outputPane {
+    border: 2px solid red;
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+
+<textarea id="inputPane" placeholder="Write your HTML here..."></textarea>
+<div id="outputPane"><iframe id="outputFrame" frameBorder="0"></iframe></div>
+
+<script>
+  document.getElementById('inputPane').addEventListener('keyup', function() {
+    var htmlContent = document.getElementById('inputPane').value;
+    var iframe = document.getElementById('outputFrame');
+    iframe.contentWindow.document.open();
+    iframe.contentWindow.document.write(htmlContent);
+    iframe.contentWindow.document.close();
+  });
+</script>
+
+</body>
+</html>
